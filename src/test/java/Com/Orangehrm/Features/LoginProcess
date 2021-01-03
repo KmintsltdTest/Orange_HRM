@@ -1,0 +1,41 @@
+Feature: Customer can login successfully
+  As a customer
+  I want the ability to login using  a given Username and Password.
+  Scenario Outline: login should be successful using the correct Password and Username.
+   Given I navigate to the HRM HomePage
+   When  I enter the "<Username>"
+   And   I  entre the "<Password>"
+   And   I Click on the "<Username>"
+   And   I Click on the Login Button
+   Then  the DashBoard is displayed.
+
+  Examples:
+    |Username| Password|
+    |Admin   |admin123 |
+    |Admin   |admin124 |
+    |Admin   |admin125 |
+    |Admin   |admin126 |
+
+  Scenario Outline: login should be not be successful using the correct Password and incorrect Username.
+    Given I navigate to the HRM HomePage
+    When  I enter the "<Username>"
+    And   I  entre the "<Password>"
+    And   I Click on the "<Username>"
+    And   I Click on the Login Button
+    Then  Error message "Csrf token validation failed" should be displayed.
+
+    Examples:
+      |Username| Password|
+      |Admin   |admin12|
+
+  Scenario Outline: login should be not be successful using the correct incorrect Password and a correct Username.
+    Given I navigate to the HRM HomePage
+    When  I enter the "<Username>"
+    And   I  entre the "<Password>"
+    And   I Click on the "<Username>"
+    And   I Click on the Login Button
+    Then  Error message "Csrf token validation failed" should be displayed.
+
+    Examples:
+      |Username| Password|
+      |Admin   |admin12|
